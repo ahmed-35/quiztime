@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quiz Startup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz Startup - Résultat par pourcentage</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -38,7 +38,7 @@
       cursor: pointer;
     }
     #result {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
       margin-top: 20px;
       text-align: center;
@@ -57,117 +57,106 @@
       {
         question: "Si tu pouvais créer une startup, elle ferait quoi ?",
         choices: [
-          "Créer des applis intelligentes",
-          "Construire des robots pour aider",
-          "Sécuriser des systèmes et des réseaux",
-          "Fabriquer de petits objets électroniques"
-        ],
-        correct: "Créer des applis intelligentes"
+          { text: "Créer des applis intelligentes", type: "idsd" },
+          { text: "Construire des robots pour aider", type: "gii" },
+          { text: "Sécuriser des systèmes et des réseaux", type: "gt" },
+          { text: "Fabriquer de petits objets électroniques", type: "gec" }
+        ]
       },
       {
         question: "Tu es dans une équipe d’élite pour sauver une station spatiale. Tu es responsable de…",
         choices: [
-          "Écrire le code principal de contrôle",
-          "Réparer les bras robotiques",
-          "Gérer les communications et le système",
-          "Réparer les circuits électroniques"
-        ],
-        correct: "Écrire le code principal de contrôle"
+          { text: "Écrire le code principal de contrôle", type: "idsd" },
+          { text: "Réparer les bras robotiques", type: "gii" },
+          { text: "Gérer les communications et le système", type: "gt" },
+          { text: "Réparer les circuits électroniques", type: "gec" }
+        ]
       },
       {
         question: "Tu reçois une box mystère avec 5 objets dedans. Tu choisis quoi ?",
         choices: [
-          "Un laptop puissant et un clavier",
-          "Moteur + capteur + carte Arduino",
-          "Routeur + câbles + carte SIM",
-          "Résistances + condensateurs + multimètre"
-        ],
-        correct: "Un laptop puissant et un clavier"
+          { text: "Un laptop puissant et un clavier", type: "idsd" },
+          { text: "Moteur + capteur + carte Arduino", type: "gii" },
+          { text: "Routeur + câbles + carte SIM", type: "gt" },
+          { text: "Résistances + condensateurs + multimètre", type: "gec" }
+        ]
       },
       {
         question: "Si tu étais un super-héros tech, ton pouvoir serait…",
         choices: [
-          "Contrôler les machines avec du code",
-          "Déplacer des objets sans les toucher",
-          "Comprendre comment les données circulent",
-          "Réparer n’importe quoi juste avec tes mains"
-        ],
-        correct: "Contrôler les machines avec du code"
+          { text: "Contrôler les machines avec du code", type: "idsd" },
+          { text: "Déplacer des objets sans les toucher", type: "gii" },
+          { text: "Comprendre comment les données circulent", type: "gt" },
+          { text: "Réparer n’importe quoi juste avec tes mains", type: "gec" }
+        ]
       },
       {
         question: "Dans une émission TV tech, tu dois choisir un défi. Tu prends :",
         choices: [
-          "Créer une appli en 30 minutes",
-          "Faire un robot qui ramène un objet",
-          "Pirater et sécuriser un système en direct",
-          "Souder un circuit électronique chronométré"
-        ],
-        correct: "Créer une appli en 30 minutes"
+          { text: "Créer une appli en 30 minutes", type: "idsd" },
+          { text: "Faire un robot qui ramène un objet", type: "gii" },
+          { text: "Pirater et sécuriser un système en direct", type: "gt" },
+          { text: "Souder un circuit électronique chronométré", type: "gec" }
+        ]
       },
       {
         question: "Tu es enfermé(e) dans une salle verrouillée. Pour sortir, tu choisis :",
         choices: [
-          "Écrire un script pour l’ouvrir",
-          "Construire un mécanisme d’ouverture",
-          "Hacker le système de verrouillage",
-          "Souder un petit circuit pour actionner le moteur"
-        ],
-        correct: "Écrire un script pour l’ouvrir"
+          { text: "Écrire un script pour l’ouvrir", type: "idsd" },
+          { text: "Construire un mécanisme d’ouverture", type: "gii" },
+          { text: "Hacker le système de verrouillage", type: "gt" },
+          { text: "Souder un petit circuit pour actionner le moteur", type: "gec" }
+        ]
       },
       {
         question: "Tu croises un alien qui ne parle pas. Tu veux communiquer. Tu fais quoi ?",
         choices: [
-          "Une appli pour traduire ses signaux",
-          "Un capteur qui réagit à ses gestes",
-          "Un réseau pour lui envoyer des messages",
-          "Une lumière qui s’allume avec le son"
-        ],
-        correct: "Une appli pour traduire ses signaux"
+          { text: "Une appli pour traduire ses signaux", type: "idsd" },
+          { text: "Un capteur qui réagit à ses gestes", type: "gii" },
+          { text: "Un réseau pour lui envoyer des messages", type: "gt" },
+          { text: "Une lumière qui s’allume avec le son", type: "gec" }
+        ]
       },
       {
         question: "Tu construis une cabane dans un jardin. Tu veux l’équiper tech. Tu ajoutes :",
         choices: [
-          "Écrans et app pour gérer la lumière",
-          "Une porte intelligente automatique",
-          "Des capteurs de mouvement connectés",
-          "Des lumières qui réagissent au soleil"
-        ],
-        correct: "Écrans et app pour gérer la lumière"
+          { text: "Écrans et app pour gérer la lumière", type: "idsd" },
+          { text: "Une porte intelligente automatique", type: "gii" },
+          { text: "Des capteurs de mouvement connectés", type: "gt" },
+          { text: "Des lumières qui réagissent au soleil", type: "gec" }
+        ]
       },
       {
         question: "Tu ouvres ta chaîne YouTube. Le thème serait :",
         choices: [
-          "Programmation et IA",
-          "Robots, capteurs, expériences",
-          "Réseaux, cybersécurité",
-          "Projets DIY électroniques"
-        ],
-        correct: "Programmation et IA"
+          { text: "Programmation et IA", type: "idsd" },
+          { text: "Robots, capteurs, expériences", type: "gii" },
+          { text: "Réseaux, cybersécurité", type: "gt" },
+          { text: "Projets DIY électroniques", type: "gec" }
+        ]
       },
       {
         question: "Tu visites une startup. Tu poses une seule question. Laquelle ?",
         choices: [
-          "Vous codez avec quoi ?",
-          "Quels robots développez-vous ?",
-          "Votre système est sécurisé comment ?",
-          "Quelle techno utilisez-vous pour vos circuits ?"
-        ],
-        correct: "Vous codez avec quoi ?"
+          { text: "Vous codez avec quoi ?", type: "idsd" },
+          { text: "Quels robots développez-vous ?", type: "gii" },
+          { text: "Votre système est sécurisé comment ?", type: "gt" },
+          { text: "Quelle techno utilisez-vous pour vos circuits ?", type: "gec" }
+        ]
       },
       {
         question: "Tu veux créer un jeu éducatif. Il serait comment ?",
         choices: [
-          "Jeu de logique et programmation",
-          "Robot interactif avec l’enfant",
-          "Système qui aide à résoudre des problèmes",
-          "Tableau qui réagit au toucher"
-        ],
-        correct: "Jeu de logique et programmation"
+          { text: "Jeu de logique et programmation", type: "idsd" },
+          { text: "Robot interactif avec l’enfant", type: "gii" },
+          { text: "Système qui aide à résoudre des problèmes", type: "gt" },
+          { text: "Tableau qui réagit au toucher", type: "gec" }
+        ]
       }
     ];
 
     let current = 0;
-    let score = 0;
+    let answersCount = { idsd: 0, gii: 0, gt: 0, gec: 0 };
 
     function loadQuestion() {
       const quiz = document.getElementById("quiz");
@@ -175,7 +164,7 @@
       let html = `<div class='question'>Question ${current + 1} : ${q.question}</div>`;
       html += '<div class="choices">';
       q.choices.forEach((choice, index) => {
-        html += `<label><input type="radio" name="choice" value="${index}" /> ${choice}</label>`;
+        html += `<label><input type="radio" name="choice" value="${index}" /> ${choice.text}</label>`;
       });
       html += '</div>';
       quiz.innerHTML = html;
@@ -184,9 +173,9 @@
     function nextQuestion() {
       const selected = document.querySelector('input[name="choice"]:checked');
       if (!selected) return alert("Choisis une réponse.");
-      const answer = parseInt(selected.value);
-      const answerText = quizData[current].choices[answer];
-      if (answerText === quizData[current].correct) score++;
+      const answerIndex = parseInt(selected.value);
+      const answerType = quizData[current].choices[answerIndex].type;
+      answersCount[answerType]++;
       current++;
       if (current < quizData.length) {
         loadQuestion();
@@ -198,8 +187,30 @@
     function showResult() {
       document.getElementById("quiz").style.display = "none";
       document.querySelector("button").style.display = "none";
-      const percentage = Math.round((score / quizData.length) * 100);
-      document.getElementById("result").textContent = `Ton score est : ${percentage}%`;
+
+      const total = current;
+      const percentages = {
+        idsd: Math.round((answersCount.idsd / total) * 100),
+        gii: Math.round((answersCount.gii / total) * 100),
+        gt: Math.round((answersCount.gt / total) * 100),
+        gec: Math.round((answersCount.gec / total) * 100)
+      };
+
+      const maxType = Object.keys(percentages).reduce((a, b) => percentages[a] > percentages[b] ? a : b);
+
+      const labels = {
+        idsd: "IDSD",
+        gii: "GII",
+        gt: "GT",
+        gec: "GEC"
+      };
+
+      const resultText = `
+        ✔️ Tu es à ${percentages.gec}% GEC – ${percentages.idsd}% IDSD – ${percentages.gii}% GII – ${percentages.gt}% GT<br>
+        🏆 Ton profil dominant est : <strong>${labels[maxType]}</strong>
+      `;
+
+      document.getElementById("result").innerHTML = resultText;
     }
 
     loadQuestion();
