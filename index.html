@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Startup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+    .quiz-container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .question {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .choices label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+    #result {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div id="quiz"></div>
+    <button onclick="nextQuestion()">Suivant</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "Si tu pouvais créer une startup, elle ferait quoi ?",
+        choices: [
+          "Créer des applis intelligentes",
+          "Construire des robots pour aider",
+          "Sécuriser des systèmes et des réseaux",
+          "Fabriquer de petits objets électroniques"
+        ],
+        correct: "Créer des applis intelligentes"
+      },
+      {
+        question: "Tu es dans une équipe d’élite pour sauver une station spatiale. Tu es responsable de…",
+        choices: [
+          "Écrire le code principal de contrôle",
+          "Réparer les bras robotiques",
+          "Gérer les communications et le système",
+          "Réparer les circuits électroniques"
+        ],
+        correct: "Écrire le code principal de contrôle"
+      },
+      {
+        question: "Tu reçois une box mystère avec 5 objets dedans. Tu choisis quoi ?",
+        choices: [
+          "Un laptop puissant et un clavier",
+          "Moteur + capteur + carte Arduino",
+          "Routeur + câbles + carte SIM",
+          "Résistances + condensateurs + multimètre"
+        ],
+        correct: "Un laptop puissant et un clavier"
+      },
+      {
+        question: "Si tu étais un super-héros tech, ton pouvoir serait…",
+        choices: [
+          "Contrôler les machines avec du code",
+          "Déplacer des objets sans les toucher",
+          "Comprendre comment les données circulent",
+          "Réparer n’importe quoi juste avec tes mains"
+        ],
+        correct: "Contrôler les machines avec du code"
+      },
+      {
+        question: "Dans une émission TV tech, tu dois choisir un défi. Tu prends :",
+        choices: [
+          "Créer une appli en 30 minutes",
+          "Faire un robot qui ramène un objet",
+          "Pirater et sécuriser un système en direct",
+          "Souder un circuit électronique chronométré"
+        ],
+        correct: "Créer une appli en 30 minutes"
+      },
+      {
+        question: "Tu es enfermé(e) dans une salle verrouillée. Pour sortir, tu choisis :",
+        choices: [
+          "Écrire un script pour l’ouvrir",
+          "Construire un mécanisme d’ouverture",
+          "Hacker le système de verrouillage",
+          "Souder un petit circuit pour actionner le moteur"
+        ],
+        correct: "Écrire un script pour l’ouvrir"
+      },
+      {
+        question: "Tu croises un alien qui ne parle pas. Tu veux communiquer. Tu fais quoi ?",
+        choices: [
+          "Une appli pour traduire ses signaux",
+          "Un capteur qui réagit à ses gestes",
+          "Un réseau pour lui envoyer des messages",
+          "Une lumière qui s’allume avec le son"
+        ],
+        correct: "Une appli pour traduire ses signaux"
+      },
+      {
+        question: "Tu construis une cabane dans un jardin. Tu veux l’équiper tech. Tu ajoutes :",
+        choices: [
+          "Écrans et app pour gérer la lumière",
+          "Une porte intelligente automatique",
+          "Des capteurs de mouvement connectés",
+          "Des lumières qui réagissent au soleil"
+        ],
+        correct: "Écrans et app pour gérer la lumière"
+      },
+      {
+        question: "Tu ouvres ta chaîne YouTube. Le thème serait :",
+        choices: [
+          "Programmation et IA",
+          "Robots, capteurs, expériences",
+          "Réseaux, cybersécurité",
+          "Projets DIY électroniques"
+        ],
+        correct: "Programmation et IA"
+      },
+      {
+        question: "Tu visites une startup. Tu poses une seule question. Laquelle ?",
+        choices: [
+          "Vous codez avec quoi ?",
+          "Quels robots développez-vous ?",
+          "Votre système est sécurisé comment ?",
+          "Quelle techno utilisez-vous pour vos circuits ?"
+        ],
+        correct: "Vous codez avec quoi ?"
+      },
+      {
+        question: "Tu veux créer un jeu éducatif. Il serait comment ?",
+        choices: [
+          "Jeu de logique et programmation",
+          "Robot interactif avec l’enfant",
+          "Système qui aide à résoudre des problèmes",
+          "Tableau qui réagit au toucher"
+        ],
+        correct: "Jeu de logique et programmation"
+      }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function loadQuestion() {
+      const quiz = document.getElementById("quiz");
+      const q = quizData[current];
+      let html = `<div class='question'>Question ${current + 1} : ${q.question}</div>`;
+      html += '<div class="choices">';
+      q.choices.forEach((choice, index) => {
+        html += `<label><input type="radio" name="choice" value="${index}" /> ${choice}</label>`;
+      });
+      html += '</div>';
+      quiz.innerHTML = html;
+    }
+
+    function nextQuestion() {
+      const selected = document.querySelector('input[name="choice"]:checked');
+      if (!selected) return alert("Choisis une réponse.");
+      const answer = parseInt(selected.value);
+      const answerText = quizData[current].choices[answer];
+      if (answerText === quizData[current].correct) score++;
+      current++;
+      if (current < quizData.length) {
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      document.getElementById("quiz").style.display = "none";
+      document.querySelector("button").style.display = "none";
+      const percentage = Math.round((score / quizData.length) * 100);
+      document.getElementById("result").textContent = `Ton score est : ${percentage}%`;
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
