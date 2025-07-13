@@ -7,25 +7,37 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f4f4f4;
+      background-color: #cce7ff;
       padding: 20px;
       max-width: 700px;
       margin: auto;
     }
-    .quiz-container {
+    .start-container, .quiz-container {
       background: white;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .start-container img {
+      width: 150px;
+      margin-bottom: 15px; /* شوية أقل المسافة بين اللوغو والنص */
+    }
+    .start-container p {
+      font-size: 18px;
+      margin-bottom: 20px;
     }
     .question {
       font-weight: bold;
       margin-bottom: 10px;
+      text-align: left;
     }
     .choices label {
       display: block;
       margin: 8px 0;
       cursor: pointer;
+      text-align: left;
     }
     button {
       margin-top: 15px;
@@ -38,17 +50,42 @@
       cursor: pointer;
     }
     #result {
-      font-size: 18px;
-      font-weight: bold;
-      margin-top: 20px;
+      font-size: 16px;
+      font-weight: 400; /* خط عادي، مش ثقيل */
+      line-height: 1.5;
+      color: #333;
       text-align: center;
+      margin-top: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    #result #s2 {
+      font-weight: 600;
+      font-size: 18px;
+      color: #007BFF;
+    }
+    #result #s1 {
+      font-weight: 600;
+      font-size: 18px;
+      color: #000;
+    }
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="quiz-container">
+
+  <div id="start" class="start-container">
+    <img src="logo.png" alt="Logo du Club" />
+    <p>💡 <strong>Hésite encore où tu appartiens vraiment ?</strong><br>
+    Réponds aux questions, découvre si tu es plus fait pour <strong>IDSD</strong>, <strong>GT</strong>, <strong>GII</strong> ou <strong>GEC</strong>.<br>
+    Laisse tes choix parler pour toi !</p>
+    <button onclick="startQuiz()">Commencer le Quiz</button>
+  </div>
+
+  <div id="quiz-container" class="quiz-container hidden">
     <div id="quiz"></div>
-    <button onclick="nextQuestion()">Suivant</button>
+    <button id="next-btn" onclick="nextQuestion()">Suivant</button>
     <div id="result"></div>
   </div>
 
@@ -125,6 +162,12 @@
     let current = 0;
     let answersCount = { idsd: 0, gii: 0, gt: 0, gec: 0 };
 
+    function startQuiz() {
+      document.getElementById("start").classList.add("hidden");
+      document.getElementById("quiz-container").classList.remove("hidden");
+      loadQuestion();
+    }
+
     function loadQuestion() {
       const quiz = document.getElementById("quiz");
       const q = quizData[current];
@@ -153,7 +196,7 @@
 
     function showResult() {
       document.getElementById("quiz").style.display = "none";
-      document.querySelector("button").style.display = "none";
+      document.getElementById("next-btn").style.display = "none";
 
       const total = current;
       const percentages = {
@@ -179,14 +222,13 @@
         gec: "La spécialité GEC forme des ingénieurs capables de concevoir des systèmes électroniques embarqués, intelligents et communicants, du choix des composants jusqu’à la réalisation de circuits et systèmes complets (matériel et logiciel). Elle ouvre la voie à des métiers dans les secteurs des télécoms, de l’aéronautique, de l’automobile, de l’énergie et de la défense. En dernière année, trois options sont proposées : Systèmes Embarqués, Systèmes Connectés, ou Systèmes Électroniques Intelligents."
       };
 
-      const resultText = `✔️ Tu es à ${percentages.gec}% GEC – ${percentages.idsd}% IDSD – ${percentages.gii}% GII – ${percentages.gt}% GT<br><br>
-        🏆 Ton profil dominant est : <strong>${labels[maxType]}</strong><br><br>
+      const resultText = `<strong id="s1">✔️ Tu es à ${percentages.gec}% GEC – ${percentages.idsd}% IDSD – ${percentages.gii}% GII – ${percentages.gt}% GT<br><br>
+        🏆 Ton profil dominant est : </strong><strong id="s2">${labels[maxType]}</strong><br><br>
         ${descriptions[maxType]}`;
 
       document.getElementById("result").innerHTML = resultText;
     }
 
-    loadQuestion();
   </script>
 </body>
 </html>
